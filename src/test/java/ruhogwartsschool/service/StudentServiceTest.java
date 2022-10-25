@@ -39,7 +39,7 @@ class StudentServiceTest {
 
     @ParameterizedTest
     @MethodSource("provideParamsForCorrectDeleteTest")
-    public void shouldDeleteCorrectEntry(Student s1, Student s2) {
+    public void shouldDeleteCorrectEntry( Student s1, Student s2 ) {
         assertDoesNotThrow(() -> out.createStudent(s1));
         assertDoesNotThrow(() -> out.createStudent(s2));
         assertDoesNotThrow(() -> out.deleteStudent(1L));
@@ -51,7 +51,7 @@ class StudentServiceTest {
 
     @ParameterizedTest
     @MethodSource("provideParamsForDoesntExistUpdateTest")
-    public void shouldUpdateCorrectly(Student s1, Student s2) {
+    public void shouldUpdateCorrectly( Student s1, Student s2 ) {
         assertDoesNotThrow(() -> out.createStudent(s1));
         s2.setId(1L);
         assertDoesNotThrow(() -> out.editStudent(s2));

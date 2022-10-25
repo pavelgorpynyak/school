@@ -6,6 +6,7 @@ import java.util.List;
 
 public class StudentServiceTestConstants {
 
+
     public static final Student STUDENT_1 = new Student(0L, "Ivan", 20);
     public static final Student STUDENT_2 = new Student(0L, "Ivan", 21);
     public static final Student STUDENT_3 = new Student(0L, "Ivan", 22);

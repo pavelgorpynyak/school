@@ -19,7 +19,6 @@ class FacultyServiceTest {
 
     private FacultyService out;
 
-
     @BeforeEach
     public void setUp() {
         out = new FacultyService();

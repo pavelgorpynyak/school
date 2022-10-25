@@ -50,4 +50,5 @@ public class StudentController {
     public Student deleteStudent( @PathVariable long id ) {
         return studentService.deleteStudent(id);
     }
+
 }

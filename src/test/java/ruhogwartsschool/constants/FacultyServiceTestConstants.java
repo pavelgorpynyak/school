@@ -5,6 +5,7 @@ import ruhogwartsschool.model.Faculty;
 import java.util.List;
 
 public class FacultyServiceTestConstants {
+
     public static Faculty FACULTY_1 = new Faculty(0L, "Pufenduy", "Red");
     public static Faculty FACULTY_2 = new Faculty(0L, "Cogtevran", "Yellow");
     public static Faculty FACULTY_3 = new Faculty(0L, "Grifendor", "Green");
