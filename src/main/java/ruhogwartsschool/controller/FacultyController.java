@@ -7,6 +7,7 @@ import ruhogwartsschool.service.FacultyService;
 
 import javax.websocket.server.PathParam;
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("facultys")
@@ -20,11 +21,11 @@ public class FacultyController {
 
     @GetMapping("{id}")
     public ResponseEntity<Faculty> getFacultyInfo( @PathVariable long id ) {
-        Faculty faculty = facultyService.findFaculty(id);
-        if (faculty == null) {
+        Optional<Faculty> faculty = facultyService.findFaculty(id);
+        if (faculty.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(faculty);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping
@@ -47,7 +48,8 @@ public class FacultyController {
     }
 
     @DeleteMapping("{id}")
-    public Faculty deleteFaculty( @PathVariable long id ) {
-        return facultyService.deleteFaculty(id);
+    public ResponseEntity<Faculty> deleteFaculty( @PathVariable long id ) {
+        facultyService.deleteFaculty(id);
+        return ResponseEntity.ok().build();
     }
 }

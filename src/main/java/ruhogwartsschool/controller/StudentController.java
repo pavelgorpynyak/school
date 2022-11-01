@@ -1,12 +1,12 @@
 package ruhogwartsschool.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import ruhogwartsschool.model.Student;
 import ruhogwartsschool.service.StudentService;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("students")
@@ -20,11 +20,11 @@ public class StudentController {
 
     @GetMapping("{id}")
     public ResponseEntity<Student> getStudentInfo( @PathVariable long id ) {
-        Student student = studentService.findStudent(id);
-        if (student == null) {
+        Optional<Student> student = studentService.findStudent(id);
+        if (student.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(student);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping
@@ -47,8 +47,9 @@ public class StudentController {
     }
 
     @DeleteMapping("{id}")
-    public Student deleteStudent( @PathVariable long id ) {
-        return studentService.deleteStudent(id);
+    public ResponseEntity<Student> deleteStudent( @PathVariable long id ) {
+        studentService.deleteStudent(id);
+        return ResponseEntity.ok().build();
     }
 
 }
