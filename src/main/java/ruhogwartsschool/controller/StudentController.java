@@ -20,11 +20,8 @@ public class StudentController {
 
     @GetMapping("{id}")
     public ResponseEntity<Student> getStudentInfo( @PathVariable long id ) {
-        Optional<Student> student = studentService.findStudent(id);
-        if (student.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().build();
+        Student student = studentService.findStudent(id);
+        return ResponseEntity.ok(student);
     }
 
     @GetMapping
@@ -40,9 +37,6 @@ public class StudentController {
     @PutMapping
     public ResponseEntity<Student> editStudent( @RequestBody Student student ) {
         Student fountStudent = studentService.editStudent(student);
-        if (fountStudent == null) {
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok(fountStudent);
     }
 

@@ -1,6 +1,7 @@
 package ruhogwartsschool.service;
 
 import org.springframework.stereotype.Service;
+import ruhogwartsschool.exception.NotFoundException;
 import ruhogwartsschool.model.Student;
 import ruhogwartsschool.repository.StudentRepository;
 
@@ -22,8 +23,12 @@ public class StudentService{
         return studentRepository.save(student);
     }
 
-    public Optional<Student> findStudent( long id ) {
-        return studentRepository.findById(id);
+    public Student findStudent( long id ) {
+        Optional<Student> searchingStudent = studentRepository.findById(id);
+        if (searchingStudent.isEmpty()) {
+            throw new NotFoundException(" Student not found");
+        }
+        return searchingStudent.get();
     }
 
     public Student editStudent( Student student ) {

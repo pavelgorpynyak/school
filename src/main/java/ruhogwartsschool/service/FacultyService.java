@@ -1,6 +1,7 @@
 package ruhogwartsschool.service;
 
 import org.springframework.stereotype.Service;
+import ruhogwartsschool.exception.NotFoundException;
 import ruhogwartsschool.model.Faculty;
 import ruhogwartsschool.repository.FacultyRepository;
 
@@ -22,8 +23,12 @@ public class FacultyService {
         return facultyRepository.save(faculty);
     }
 
-    public Optional<Faculty> findFaculty( long id ) {
-        return facultyRepository.findById(id);
+    public Faculty findFaculty( long id ) {
+        Optional<Faculty> searchingFaculty = facultyRepository.findById(id);
+        if (searchingFaculty.isEmpty()) {
+            throw new NotFoundException("Faculty not found!");
+        }
+        return searchingFaculty.get();
     }
 
     public Faculty editFaculty( Faculty faculty ) {
