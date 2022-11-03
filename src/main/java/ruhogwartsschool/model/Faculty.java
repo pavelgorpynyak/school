@@ -12,7 +12,7 @@ public class Faculty {
     private String color;
 
     @ManyToOne
-    @JoinColumn(name = "faculty_id")
+    @JoinColumn(name = "student_id")
     private Student student;
 
     public long getId() {
