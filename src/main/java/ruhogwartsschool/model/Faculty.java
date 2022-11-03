@@ -1,8 +1,6 @@
 package ruhogwartsschool.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -12,6 +10,10 @@ public class Faculty {
     private long id;
     private String name;
     private String color;
+
+    @ManyToOne
+    @JoinColumn(name = "faculty_id")
+    private Student student;
 
     public long getId() {
         return id;

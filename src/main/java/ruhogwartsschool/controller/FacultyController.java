@@ -26,8 +26,9 @@ public class FacultyController {
     }
 
     @GetMapping
-    public ResponseEntity<Collection<Faculty>> getFacultiesByColor( @RequestParam String color ) {
-        return ResponseEntity.ok(facultyService.getFacultyByColor(color));
+    public ResponseEntity<Collection<Faculty>> getFacultiesByNameAndColor( @RequestParam(required = false) String name,
+                                                                           @RequestParam(required = false) String color ) {
+        return ResponseEntity.ok(facultyService.getFacultyByNameAndColor(name, color));
     }
 
     @PostMapping

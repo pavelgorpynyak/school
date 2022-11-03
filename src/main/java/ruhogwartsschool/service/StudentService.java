@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class StudentService{
+public class StudentService {
 
 
     private final StudentRepository studentRepository;
@@ -39,9 +39,7 @@ public class StudentService{
         studentRepository.deleteById(id);
     }
 
-    public Collection<Student> getStudentByAge( int age ) {
-        return studentRepository.findAll().stream()
-                .filter(a -> a.getAge() == age)
-                .collect(Collectors.toList());
+    public Collection<Student> getStudentByAge( int ageMin, int ageMax ) {
+        return studentRepository.findStudentByAgeBetween(ageMin, ageMax);
     }
 }

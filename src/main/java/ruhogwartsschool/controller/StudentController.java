@@ -25,8 +25,9 @@ public class StudentController {
     }
 
     @GetMapping
-    public ResponseEntity<Collection<Student>> getStudentsByAge( @RequestParam int age ) {
-        return ResponseEntity.ok(studentService.getStudentByAge(age));
+    public ResponseEntity<Collection<Student>> getStudentsByAge( @RequestParam int ageMin,
+                                                                 @RequestParam int ageMax) {
+        return ResponseEntity.ok(studentService.getStudentByAge(ageMin,ageMax));
     }
 
     @PostMapping
