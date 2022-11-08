@@ -62,7 +62,7 @@ class StudentControllerTests {
         HttpEntity<Student> entity = new HttpEntity<Student>(testStudent);
 
         ResponseEntity<Student> response = restTemplate.exchange("http://localhost:" + port + "/students/id"
-                ,HttpMethod.PUT,entity,Student.class,id);
+                , HttpMethod.PUT, entity, Student.class, id);
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
         assertThat(response.getBody()).isNotNull();
         assertThat(response.getBody().getId()).isNotNull();

@@ -86,6 +86,7 @@ public class FacultyControllerTest {
                 .andExpect(jsonPath("$.name").value(name))
                 .andExpect(jsonPath("$.color").value(color));
 
+
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/facultys/" + id)
                         .accept(MediaType.APPLICATION_JSON))
