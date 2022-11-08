@@ -3,10 +3,13 @@ package ruhogwartsschool.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ruhogwartsschool.model.Student;
+import ruhogwartsschool.model.StudentAvarageAge;
+import ruhogwartsschool.model.StudentGetAmount;
+import ruhogwartsschool.model.StudentLastInTheTurn;
 import ruhogwartsschool.service.StudentService;
 
 import java.util.Collection;
-import java.util.Optional;
+import java.util.List;
 
 @RestController
 @RequestMapping("students")
@@ -26,8 +29,8 @@ public class StudentController {
 
     @GetMapping
     public ResponseEntity<Collection<Student>> getStudentsByAge( @RequestParam int ageMin,
-                                                                 @RequestParam int ageMax) {
-        return ResponseEntity.ok(studentService.getStudentByAge(ageMin,ageMax));
+                                                                 @RequestParam int ageMax ) {
+        return ResponseEntity.ok(studentService.getStudentByAge(ageMin, ageMax));
     }
 
     @PostMapping
@@ -45,6 +48,21 @@ public class StudentController {
     public ResponseEntity<Student> deleteStudent( @PathVariable long id ) {
         studentService.deleteStudent(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/students-by-quantity")
+    public List<StudentGetAmount> getAllStudentsQuantity() {
+        return studentService.getAllStudentsQuantity();
+    }
+
+    @GetMapping("/students-by-avarage-age")
+    public List<StudentAvarageAge> getAvarageAge() {
+        return studentService.getAvarageAge();
+    }
+
+    @GetMapping("/students-by-turn")
+    public List<StudentLastInTheTurn> getStudentLastTurn() {
+        return studentService.getStudentLastTurn();
     }
 
 }

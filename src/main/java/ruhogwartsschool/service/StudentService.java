@@ -3,11 +3,14 @@ package ruhogwartsschool.service;
 import org.springframework.stereotype.Service;
 import ruhogwartsschool.exception.NotFoundException;
 import ruhogwartsschool.model.Student;
+import ruhogwartsschool.model.StudentAvarageAge;
+import ruhogwartsschool.model.StudentGetAmount;
+import ruhogwartsschool.model.StudentLastInTheTurn;
 import ruhogwartsschool.repository.StudentRepository;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -42,4 +45,16 @@ public class StudentService {
     public Collection<Student> getStudentByAge( int ageMin, int ageMax ) {
         return studentRepository.findStudentByAgeBetween(ageMin, ageMax);
     }
+
+    public List<StudentGetAmount> getAllStudentsQuantity() {
+        return studentRepository.getAllStudentsQuantity();
+    }
+
+    public List<StudentAvarageAge> getAvarageAge() {
+        return studentRepository.getAvarageAgeByStudent();
+    }
+    public List<StudentLastInTheTurn> getStudentLastTurn() {
+        return studentRepository.getStudentsByTurn();
+    }
+
 }
