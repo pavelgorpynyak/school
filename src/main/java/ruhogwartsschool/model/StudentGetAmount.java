@@ -4,5 +4,4 @@ public interface StudentGetAmount {
 
     String getName();
 
-    Long getId();
 }
