@@ -1,5 +1,8 @@
 package ruhogwartsschool.service;
 
+import org.slf4j.ILoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +22,8 @@ import static java.nio.file.StandardOpenOption.CREATE_NEW;
 @Transactional
 public class AvatarService {
 
+    private static final Logger LOG = LoggerFactory.getLogger(AvatarService.class);
+
     @Value("${path.to.avatars.folder}")
     private String avatarsDir;
 
@@ -31,6 +36,7 @@ public class AvatarService {
     }
 
     public void uploadAvatar( Long studentId, MultipartFile avatarFile ) throws IOException {
+        LOG.debug("Method upload avatar");
         Student student = studentService.findStudent(studentId);
         Path filePath = Path.of(avatarsDir, student + "." + getExtentions(avatarFile.getOriginalFilename()));
         Files.createDirectories(filePath.getParent());
@@ -54,10 +60,12 @@ public class AvatarService {
     }
 
     public Avatar findAvatar( Long studentId ) {
+        LOG.debug("Method find avatar");
         return avatarRepository.findByStudentId(studentId).orElse(new Avatar());
     }
 
     private String getExtentions( String fileName ) {
+        LOG.debug("Method getExtentions");
         return fileName.substring(fileName.lastIndexOf(".")+1);
     }
 
