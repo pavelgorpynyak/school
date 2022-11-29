@@ -7,6 +7,7 @@ import ruhogwartsschool.service.StudentService;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("students")
@@ -45,6 +46,16 @@ public class StudentController {
     public ResponseEntity<Student> deleteStudent( @PathVariable long id ) {
         studentService.deleteStudent(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/findStudentNameStartsFromA")
+    public Stream<String> findStudentNameStartsFromA() {
+        return studentService.findStudentNameStartsFromA();
+    }
+
+    @GetMapping("/findAvarageAgeOfStudent")
+    public double findAvarageAgeOfStudent() {
+        return studentService.findAvarageAgeOfStudent();
     }
 
 }

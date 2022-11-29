@@ -10,6 +10,7 @@ import ruhogwartsschool.repository.StudentRepository;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class StudentService {
@@ -49,5 +50,20 @@ public class StudentService {
     public Collection<Student> getStudentByAge( int ageMin, int ageMax ) {
         LOG.debug("Method get student by age");
         return studentRepository.findStudentByAgeBetween(ageMin, ageMax);
+    }
+
+    public Stream<String> findStudentNameStartsFromA() {
+        return studentRepository.findAll().stream()
+                .map(Student::getName)
+                .map(String::toUpperCase)
+                .filter(s -> s.startsWith("А"))
+                .sorted();
+    }
+
+    public double findAvarageAgeOfStudent() {
+        return studentRepository.findAll().stream()
+                .mapToDouble(Student::getAge)
+                .average()
+                .orElseThrow(NotFoundException::new);
     }
 }

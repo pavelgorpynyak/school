@@ -8,6 +8,7 @@ import ruhogwartsschool.model.Faculty;
 import ruhogwartsschool.repository.FacultyRepository;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -50,5 +51,12 @@ public class FacultyService {
     public Collection<Faculty> getFacultyByNameAndColor( String name, String color ) {
         LOG.debug("Method get faculty by name and color");
         return facultyRepository.findFacultyByNameIgnoreCaseOrColorIgnoreCase(name, color);
+    }
+
+    public String findLongestFacultyName() {
+        return facultyRepository.findAll().stream()
+                .map(Faculty::getName)
+                .max(Comparator.comparingInt(String::length))
+                .orElseThrow(NotFoundException::new);
     }
 }
