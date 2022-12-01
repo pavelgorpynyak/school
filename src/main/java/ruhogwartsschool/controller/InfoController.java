@@ -19,4 +19,14 @@ public class InfoController {
     public void testParallelStream() {
 
     }
+
+    @GetMapping("/printStudents")
+    public void printStudents() {
+        infoService.printStudents();
+    }
+
+    @GetMapping("/printStudentsSynch")
+    public void printStudentsSynch() {
+        infoService.printStudentsSynch();
+    }
 }
